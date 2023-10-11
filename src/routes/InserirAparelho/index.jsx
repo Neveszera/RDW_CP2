@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { addAparelho } from '../../data/aparelhosData.jsx';
-
+import { addAparelho } from '../../../aparelhosData.jsx';
 function InserirAparelho() {
-
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -15,13 +13,11 @@ function InserirAparelho() {
         preco: '',
         imagem: '',
     });
-
     // Função para lidar com o upload de imagem
     const handleImagemUpload = (files) => {
         if (files.length > 0) {
             const file = files[0];
             const reader = new FileReader();
-
             reader.onload = (e) => {
                 // Quando o upload é bem sucedido, atualiza o estado do arquivo de imagem
                 setNovoAparelho({
@@ -29,11 +25,9 @@ function InserirAparelho() {
                     imagem: e.target.result,
                 });
             };
-
             reader.readAsDataURL(file);
         }
     };
-
     // Função para lidar com as alterações nos campos de inserção
     const handleFildChange = (field, value) => {
         setNovoAparelho({
@@ -41,7 +35,6 @@ function InserirAparelho() {
             [field]: value,
         });
     };
-
     // Função para adicionar o aparelho
     const handleInsert = () => {
         if (novoAparelho) {
@@ -51,7 +44,6 @@ function InserirAparelho() {
             navigate('/aparelhos');
         }
     };
-
     return (
         <div>
             <h2>Inserir novo Aparelho</h2>
@@ -72,7 +64,5 @@ function InserirAparelho() {
             <button onClick={handleInsert}>Inserir</button>
         </div>
     );
-
 }
-
 export default InserirAparelho;

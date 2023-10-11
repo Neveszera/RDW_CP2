@@ -1,15 +1,14 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import aparelhosData from '../../../aparelhosData';
+import aparelhosData from '../../../aparelhosData.jsx';
 import styles from './index.module.css';
-
 function VisualizarAparelho() {
   const { id } = useParams();
   const navigate = useNavigate();
-
+  
   // Encontra o aparelho pelo ID
   const aparelho = aparelhosData.find((item) => item.id === parseInt(id));
-
+  
   // Função para lidar com a exclusão do aparelho
   const handleDelete = () => {
     //Remove o aparelho da lista de dados (aparelhosData)
@@ -21,11 +20,9 @@ function VisualizarAparelho() {
       navigate('/aparelhos');
     }
   };
-
   if (!aparelho) {
     return <p>Aparelho não encontrado.</p>;
   }
-
   return (
     <div className={styles.container}>
       <h2>Detalhes de {aparelho.nome}</h2>
@@ -37,6 +34,7 @@ function VisualizarAparelho() {
       <p className={styles.descricaoExtensa}>{aparelho.descricaoExtensa}</p>
       <p className={styles.preco}>Preço: ${aparelho.preco}</p>
       <button onClick={handleDelete}>Excluir Aparelho</button>
+      <button onClick={() => navigate(`/aparelhos/${id}/editar`)}>Editar Aparelho</button>
       <button onClick={() => navigate('/aparelhos')} className={styles.goBackLink}>Voltar para a lista de Aparelhos</button>
     </div>
   );
