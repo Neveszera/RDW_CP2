@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { addAparelho } from '../../../aparelhosData.jsx';
+import aparelhosData from '../../../db.json';
 import styles from './index.module.css';
 
 function InserirAparelho() {
 
     const { id } = useParams();
     const navigate = useNavigate();
+
     // Estado para acompanhar os dados do novo aparelho
     const [novoAparelho, setNovoAparelho] = useState({
         nome: '',
@@ -21,6 +22,7 @@ function InserirAparelho() {
         if (files.length > 0) {
             const file = files[0];
             const reader = new FileReader();
+
             reader.onload = (e) => {
                 // Quando o upload é bem sucedido, atualiza o estado do arquivo de imagem
                 setNovoAparelho({
@@ -28,6 +30,7 @@ function InserirAparelho() {
                     imagem: e.target.result,
                 });
             };
+
             reader.readAsDataURL(file);
         }
     };
@@ -39,6 +42,7 @@ function InserirAparelho() {
             [field]: value,
         });
     };
+
     // Função para adicionar o aparelho
     const handleInsert = () => {
         if (novoAparelho) {
@@ -95,4 +99,5 @@ function InserirAparelho() {
     );
 
 }
+
 export default InserirAparelho;

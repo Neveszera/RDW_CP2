@@ -1,7 +1,8 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import aparelhosData from '../../../aparelhosData.jsx';
+import aparelhosData from '../../../db.json';
 import styles from './index.module.css';
+
 function VisualizarAparelho() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -20,9 +21,11 @@ function VisualizarAparelho() {
       navigate('/aparelhos');
     }
   };
+
   if (!aparelho) {
     return <p>Aparelho não encontrado.</p>;
   }
+
   return (
     <div className={styles.container}>
       <h2>Detalhes de {aparelho.nome}</h2>
@@ -41,4 +44,5 @@ function VisualizarAparelho() {
     </div>
   );
 }
+
 export default VisualizarAparelho;

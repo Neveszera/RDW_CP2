@@ -3,6 +3,7 @@
     padding: 20px;
     text-align: center;
 }
+
 .smartphoneImage {
     width: 400px;
     height: auto;
@@ -11,12 +12,14 @@
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 .descricaoExtensa {
     font-size: 16px;
     color: #333;
     margin-bottom: 20px;
     font-family: 'Poppins', sans-serif;
 }
+
 .preco {
     font-weight: bold;
     font-size: 18px;

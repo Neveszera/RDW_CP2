@@ -30,9 +30,6 @@
   transition: transform 0.3s ease-in-out;
 }
 
-
-
-
 .promotionCard h3 {
   font-size: 18px;
   margin-bottom: 10px;
@@ -114,11 +111,9 @@
 
 .viewAllLink {
   color: #007bff;
-  /* Cor do link "Ver Todos os Smartphones" */
   text-decoration: none;
   margin-top: 10px;
   display: block;
-
 }
 
 .viewAllLink:hover {

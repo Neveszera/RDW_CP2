@@ -1,14 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './index.module.css';
-import aparelhosData from '../../../aparelhosData.jsx';
+import aparelhosData from '../../../db.json';
+
 function Home() {
   // IDs dos smartphones que serão destacados
   const destaquesIds = [2, 5];
+
   // Filtrar os smartphones com base nos IDs de destaque
   const destaques = aparelhosData.filter((smartphone) =>
     destaquesIds.includes(smartphone.id)
   );
+
   return (
     <div className={styles.container}>
       <div className={styles.promotionCardContainer}>
@@ -21,6 +24,7 @@ function Home() {
           <p>Explore nossa seleção de smartphones de última geração.</p>
         </div>
       </div>
+
       <div className={styles.featuredProducts}>
         <h2>Smartphones em Destaque</h2>
         <Link to="/aparelhos" className={styles.viewAllLink}>
@@ -47,4 +51,5 @@ function Home() {
     </div>
   );
 }
+
 export default Home;

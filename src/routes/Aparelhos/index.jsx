@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './index.module.css';
-import aparelhosData from '../../../aparelhosData';
+import aparelhosData from '../../../db.json';
 
 function Aparelhos() {
-
+  
   const [aparelhos, setAparelhos] = useState(aparelhosData);
 
   return (
@@ -32,4 +32,5 @@ function Aparelhos() {
     </div>
   );
 }
+
 export default Aparelhos;
