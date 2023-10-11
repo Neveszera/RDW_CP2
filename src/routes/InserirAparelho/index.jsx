@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from './index.module.css';
-
 function InserirAparelho() {
-
     const navigate = useNavigate();
-
     // Estado para acompanhar os dados do novo aparelho
     const [novoAparelho, setNovoAparelho] = useState({
         nome: '',
@@ -51,11 +48,10 @@ function InserirAparelho() {
                 navigate('/aparelhos');
             })
             .catch((error) => {
-                console.log('Erro ao inserir aparelho:', error);
+                console.error('Erro ao inserir aparelho:', error);
             });     
         }
     };
-
     return (
         <div className={styles.container}>
             <h2>Inserir Novo Aparelho</h2>

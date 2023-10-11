@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from './index.module.css';
-
 function VisualizarAparelho() {
   const { id } = useParams();
   const navigate = useNavigate();
-
   const [aparelho, setAparelho] = useState();
-
   useEffect(() => {
     fetch(`http://localhost:5000/aparelhos/${id}`)
       .then((response) => response.json())
       .then((data) => setAparelho(data))
-      .catch((error) => {console.log('Erro ao carregar aparelho:', error);});
+      .catch((error) => {console.error('Erro ao carregar aparelho:', error);});
   }, [id]);
 
   // Função para lidar com a exclusão do aparelho
@@ -24,15 +21,13 @@ function VisualizarAparelho() {
         navigate('/aparelhos');
       })
       .catch((error) => {
-        console.log('Erro ao excluir aparelho:', error);
+        console.error('Erro ao excluir aparelho:', error);
       });
   };
 
   if (!aparelho) {
     return <p>Aparelho não encontrado.</p>;
   }
-
-
   return (
     <div className={styles.container}>
       <h2>Detalhes de {aparelho.nome}</h2>
