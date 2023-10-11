@@ -4,20 +4,13 @@ import styles from './index.module.css';
 
 function Home() {
   const [destaques, setDestaques] = useState([]);
-
+  
   useEffect(() => {
     //Solicitação GET para obter os smartphones em destaque
     fetch('http://localhost:5000/aparelhos',)
     .then((response)=> response.json())
-    .then((data) => {
-      //Filtrar os smartphones destque pelo ID
-      const destaquesIds = [2, 5];
-      const smartphonesDestaques = data.filter((aparelho) => 
-      destaquesIds.includes(aparelho.id));
-      setDestaques(smartphonesDestaques);
-    })
     .catch((error) => 
-      console.log('Erro ao obter destaques:', error));
+      console.log('Erro ao obter aparelhos:', error));
     }, []);  
 
   return (
@@ -25,13 +18,14 @@ function Home() {
       <div className={styles.promotionCardContainer}>
         <div className={styles.promotionCard}>
           <h3>Oferta Especial</h3>
-          <p>Economize $100 em qualquer smartphone com o código "GARATO100".</p>
+          <p>Economize $100 em qualquer smartphone com o código "GARATOLU100".</p>
         </div>
         <div className={styles.promotionCard}>
           <h3>Smartphones em Destaque</h3>
           <p>Explore nossa seleção de smartphones de última geração.</p>
         </div>
       </div>
+
       <div className={styles.featuredProducts}>
         <h2>Smartphones em Destaque</h2>
         <Link to="/aparelhos" className={styles.viewAllLink}>
@@ -58,4 +52,5 @@ function Home() {
     </div>
   );
 }
+
 export default Home;

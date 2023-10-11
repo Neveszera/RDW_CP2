@@ -5,7 +5,6 @@
     padding: 20px 0;
     font-size: 18px;
     font-family: 'Poppins', sans-serif;
-    position: relative;
-    bottom: 0;
+   position: absolute;
     width: 100%;
 }
