@@ -3,7 +3,6 @@ import Pro14 from './public/img/celulares/Pro14.jpg';
 import GP6 from './public/img/celulares/GP6.jpg';
 import O9T from './public/img/celulares/9T.jpg';
 import Mi11 from './public/img/celulares/Mi11.jpg';
-
 export const aparelhosData = [
   {
     id: 1,
@@ -46,4 +45,26 @@ export const aparelhosData = [
     imagem: Mi11,
   }
 ];
+
+export const getAparelhos = () => {
+  return aparelhosData;
+};
+
+export const addAparelho = (aparelho) => {
+  aparelho.id = aparelhosData.length + 1;
+  aparelhosData.push(aparelho);
+};
+
+export const updateAparelho = (aparelho) => {
+  const index = aparelhosData.findIndex((item) => item.id === aparelho.id);
+    if(index !== -1) {
+      aparelhosData[index] = aparelho;
+    }
+};
+
+export const deleteAparelho = (id) => {
+  aparelhosData = aparelhosData.filter((item) => item.id
+  !== id);
+};
+
 export default aparelhosData;
