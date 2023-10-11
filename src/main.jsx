@@ -2,10 +2,10 @@ import React from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 import App from './App.jsx'
-import Home from './assets/routes/Home/Home.jsx';
-import Aparelhos from './assets/routes/Aparelhos/Aparelhos.jsx';
-import VizualizarAparelho from './assets/routes/VisualizarAparelho/VisualizarAparelho.jsx';
-import Error from './assets/routes/Error/Error.jsx'
+import Home from './routes/Home/index.jsx';
+import Aparelhos from './routes/Aparelhos/index.jsx';
+import VizualizarAparelho from './routes/VisualizarAparelho/index.jsx';
+import Error from './routes/Error/index.jsx'
 
 const router = createBrowserRouter([
   {

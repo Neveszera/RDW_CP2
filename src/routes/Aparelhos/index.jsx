@@ -1,15 +1,31 @@
 import React from 'react';
+import styles from './Aparelhos.module.css';
 import aparelhosData from '../../../aparelhosData';
+import { Link } from 'react-router-dom';
 
 function Aparelhos() {
   return (
-    <div>
-      <h2>Lista de Aparelhos</h2>
-      <ul>
-        {aparelhosData.map((aparelho, index) => (
-          <li key={index}>{aparelho.nome}</li>
+    <div className={styles.container}>
+      <h1 className={styles.heading}>Smartphones Disponíveis</h1>
+      <div className={styles.smartphonesContainer}>
+        {aparelhosData.map((smartphone) => (
+          <div key={smartphone.id} className={styles.smartphone}>
+            <img
+              src={smartphone.imagem}
+              alt={smartphone.nome}
+              className={styles.smartphoneImage}
+            />
+            <div className={styles.smartphoneInfo}>
+              <h3>{smartphone.nome}</h3>
+              <p>{smartphone.descricaoCurta}</p>
+              <p className={styles.smartphonePrice}>{smartphone.preco}</p>
+              <Link to={`/aparelhos/${smartphone.id}`} className={styles.viewButton}>
+                Ver Detalhes
+              </Link>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
