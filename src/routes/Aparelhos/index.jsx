@@ -4,22 +4,24 @@ import aparelhosData from '../../../aparelhosData';
 import { Link } from 'react-router-dom';
 
 function Aparelhos() {
+  const destaques = aparelhosData.slice(0, 5);
+
   return (
     <div className={styles.container}>
-      <h1 className={styles.heading}>Smartphones Disponíveis</h1>
-      <div className={styles.smartphonesContainer}>
-        {aparelhosData.map((smartphone) => (
-          <div key={smartphone.id} className={styles.smartphone}>
+      <div className={styles.listProducts}>
+        <h2>Smartphones Disponíveis</h2>
+        {destaques.map((destaque) => (
+          <div key={destaque.id} className={styles.product}>
             <img
-              src={smartphone.imagem}
-              alt={smartphone.nome}
-              className={styles.smartphoneImage}
+              src={destaque.imagem}
+              alt={destaque.nome}
+              className={styles.productImage}
             />
-            <div className={styles.smartphoneInfo}>
-              <h3>{smartphone.nome}</h3>
-              <p>{smartphone.descricaoCurta}</p>
-              <p className={styles.smartphonePrice}>{smartphone.preco}</p>
-              <Link to={`/aparelhos/${smartphone.id}`} className={styles.viewButton}>
+            <div className={styles.productInfo}>
+              <h3>{destaque.nome}</h3>
+              <p>{destaque.descricaoCurta}</p>
+              <p className={styles.productPrice}>{destaque.preco}</p>
+              <Link to={`/aparelhos/${destaque.id}`} className={styles.detailsButton}>
                 Ver Detalhes
               </Link>
             </div>
@@ -29,5 +31,4 @@ function Aparelhos() {
     </div>
   );
 }
-
 export default Aparelhos;
