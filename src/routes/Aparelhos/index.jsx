@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Aparelhos.module.css';
+import styles from './index.module.css';
 import aparelhosData from '../../../aparelhosData';
 import { Link } from 'react-router-dom';
 
