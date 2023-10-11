@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import aparelhosData from '../../../db.json';
+import { useNavigate } from "react-router-dom";
 import styles from './index.module.css';
 
 function InserirAparelho() {
 
-    const { id } = useParams();
     const navigate = useNavigate();
 
     // Estado para acompanhar os dados do novo aparelho
@@ -16,13 +14,11 @@ function InserirAparelho() {
         preco: '',
         imagem: '',
     });
-
     // Função para lidar com o upload de imagem
     const handleImageUpload = (files) => {
         if (files.length > 0) {
             const file = files[0];
             const reader = new FileReader();
-
             reader.onload = (e) => {
                 // Quando o upload é bem sucedido, atualiza o estado do arquivo de imagem
                 setNovoAparelho({
@@ -30,11 +26,9 @@ function InserirAparelho() {
                     imagem: e.target.result,
                 });
             };
-
             reader.readAsDataURL(file);
         }
     };
-
     // Função para lidar com as alterações nos campos de inserção
     const handleFieldChange = (field, value) => {
         setNovoAparelho({
@@ -42,14 +36,23 @@ function InserirAparelho() {
             [field]: value,
         });
     };
-
     // Função para adicionar o aparelho
     const handleInsert = () => {
         if (novoAparelho) {
-            //Salvar no novo aparelho
-            addAparelho(novoAparelho);
-            // Navega de volta para a página de aparelhos
-            navigate('/aparelhos');
+            fetch('http://localhost:5000/aparelhos', {
+            method: "POST",
+            headers: {
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify(novoAparelho)
+            })
+            .then((response)=> response.json())
+            .then(() => {
+                navigate('/aparelhos');
+            })
+            .catch((error) => {
+                console.log('Erro ao inserir aparelho:', error);
+            });     
         }
     };
 
@@ -97,7 +100,5 @@ function InserirAparelho() {
             <button onClick={handleInsert} className={styles.insertButton}>Inserir</button>
         </div>
     );
-
 }
-
 export default InserirAparelho;

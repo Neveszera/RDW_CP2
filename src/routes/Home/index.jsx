@@ -1,16 +1,24 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import styles from './index.module.css';
-import aparelhosData from '../../../db.json';
 
 function Home() {
-  // IDs dos smartphones que serão destacados
-  const destaquesIds = [2, 5];
+  const [destaques, setDestaques] = useState([]);
 
-  // Filtrar os smartphones com base nos IDs de destaque
-  const destaques = aparelhosData.filter((smartphone) =>
-    destaquesIds.includes(smartphone.id)
-  );
+  useEffect(() => {
+    //Solicitação GET para obter os smartphones em destaque
+    fetch('http://localhost:5000/aparelhos',)
+    .then((response)=> response.json())
+    .then((data) => {
+      //Filtrar os smartphones destque pelo ID
+      const destaquesIds = [2, 5];
+      const smartphonesDestaques = data.filter((aparelho) => 
+      destaquesIds.includes(aparelho.id));
+      setDestaques(smartphonesDestaques);
+    })
+    .catch((error) => 
+      console.log('Erro ao obter destaques:', error));
+    }, []);  
 
   return (
     <div className={styles.container}>
@@ -24,24 +32,23 @@ function Home() {
           <p>Explore nossa seleção de smartphones de última geração.</p>
         </div>
       </div>
-
       <div className={styles.featuredProducts}>
         <h2>Smartphones em Destaque</h2>
         <Link to="/aparelhos" className={styles.viewAllLink}>
           Ver Todos os Smartphones
         </Link>
-        {destaques.map((destaque) => (
-          <div key={destaque.id} className={styles.product}>
+        {destaques.map((aparelho) => (
+          <div key={aparelho.id} className={styles.product}>
             <img
-              src={destaque.imagem}
-              alt={destaque.nome}
+              src={aparelho.imagem}
+              alt={aparelho.nome}
               className={styles.productImage}
             />
             <div className={styles.productInfo}>
-              <h3>{destaque.nome}</h3>
-              <p>{destaque.descricaoCurta}</p>
-              <p className={styles.productPrice}>{destaque.preco}</p>
-              <Link to={`/aparelhos/${destaque.id}`} className={styles.detailsButton}>
+              <h3>{aparelho.nome}</h3>
+              <p>{aparelho.descricaoCurta}</p>
+              <p className={styles.productPrice}>{aparelho.preco}</p>
+              <Link to={`/aparelhos/${aparelho.id}`} className={styles.detailsButton}>
                 Ver Detalhes
               </Link>
             </div>
@@ -51,5 +58,4 @@ function Home() {
     </div>
   );
 }
-
 export default Home;
