@@ -4,13 +4,32 @@ import './index.scss';
 
 function Home() {
   const [destaques, setDestaques] = useState([]);
-
+  
   useEffect(() => {
-    // Solicitação GET para obter os smartphones em destaque
+    // Solicitação GET para obter todos os smartphones
     fetch('http://localhost:5000/aparelhos')
       .then((response) => response.json())
-      .catch((error) => console.log('Erro ao obter aparelhos:', error));
-  }, []);
+      .then((data) => {
+        // Obtenha todos os IDs dos smartphones disponíveis
+        const todosIds = data.map((aparelho) => aparelho.id);
+        
+        // Gere dois IDs aleatórios a partir dos IDs disponíveis
+        const aleatorio1 = todosIds[Math.floor(Math.random() * todosIds.length)];
+        let aleatorio2;
+        do {
+          aleatorio2 = todosIds[Math.floor(Math.random() * todosIds.length)];
+        } while (aleatorio1 === aleatorio2);
+
+        // Filtrar os smartphones destaque pelos IDs aleatórios gerados
+        const smartphonesDestaques = data.filter((aparelho) => (
+          aparelho.id === aleatorio1 || aparelho.id === aleatorio2
+        ));
+
+        setDestaques(smartphonesDestaques);
+      })
+      .catch((error) => console.log('Erro ao obter destaques:', error));
+  }, []);  
+
 
   return (
     <div className="container">

@@ -19,11 +19,20 @@ function Aparelhos() {
   const [editAparelho, setEditAparelho] = useState(null); // Estado para controlar o aparelho a ser editado
   const [detailsAparelho, setDetailsAparelho] = useState(null); // Estado para controlar o aparelho a ser detalhado
 
-  useEffect(() => {
+  // Função para buscar e atualizar a lista de aparelhos
+  const fetchAndUpdateAparelhos = () => {
     fetch('http://localhost:5000/aparelhos')
       .then((response) => response.json())
-      .then((data) => setAparelhos(data))
+      .then((data) => {
+        setAparelhos(data);
+        console.clear();
+        console.table(data); // Imprime os dados no console em formato de tabela
+      })
       .catch((error) => console.error('Erro ao obter aparelhos:', error));
+  };
+
+  useEffect(() => {
+    fetchAndUpdateAparelhos(); // Atualiza a lista de aparelhos quando o componente for montado
   }, []);
 
   // Função para abrir o modal de exclusão
@@ -88,6 +97,8 @@ function Aparelhos() {
         console.error('Erro ao excluir aparelho:', error);
       });
   };
+
+  
 
   return (
     <div className="container">
