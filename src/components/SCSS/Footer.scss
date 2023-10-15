@@ -5,6 +5,10 @@
     padding: 20px 0;
     font-size: 18px;
     font-family: 'Poppins', sans-serif;
-   position: absolute;
+    position: relative;
     width: 100%;
-}
+    bottom: 0; 
+    left: 0;
+    right: 0;
+    margin-top: 236px; 
+  }

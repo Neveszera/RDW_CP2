@@ -1,9 +1,9 @@
 import React from 'react';
-import styles from './CSS/Footer.module.css';
+import './SCSS/Footer.scss'; 
 
 function Footer() {
   return (
-    <footer className={styles.footer}>
+    <footer className="footer">
       <p>&copy; 2023 Loja de Smartphones e Tablets</p>
     </footer>
   );

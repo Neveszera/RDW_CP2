@@ -1,9 +1,8 @@
-import  { useState, useEffect } from "react";
-import Modal from "react-modal";
-import styles from "./index.module.css";
-import './Index.scss'
+import React, { useState, useEffect } from 'react';
+import Modal from 'react-modal';
+import './index.scss';
 
-Modal.setAppElement("#root");
+Modal.setAppElement('#root');
 
 function ModalEditarAparelho({ aparelho, closeEditModal, refreshAparelhos }) {
   const [editedAparelho, setEditedAparelho] = useState({ ...aparelho });
@@ -38,9 +37,9 @@ function ModalEditarAparelho({ aparelho, closeEditModal, refreshAparelhos }) {
   const handleEdit = () => {
     if (editedAparelho) {
       fetch(`http://localhost:5000/aparelhos/${aparelho.id}`, {
-        method: "PUT",
+        method: 'PUT',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(editedAparelho),
       })
@@ -50,93 +49,68 @@ function ModalEditarAparelho({ aparelho, closeEditModal, refreshAparelhos }) {
           closeEditModal();
         })
         .catch((error) => {
-          console.error("Erro ao editar aparelho:", error);
+          console.error('Erro ao editar aparelho:', error);
         });
     }
-  };
+  }
 
   return (
     <Modal
       isOpen={true}
       onRequestClose={closeEditModal}
       contentLabel="Modal de Edição"
-      className="modal"
-      overlayClassName="overlay"
     >
-      <div className="containerEdit">
-        <h2 className={styles.heading}>Editar Aparelho: {aparelho.nome}</h2>
-        <label htmlFor="imagem" >
-          Upload de Imagem:
-        </label>
-       
-        {editedAparelho.imagem && (
-          <img
-            src={editedAparelho.imagem}
-            alt={editedAparelho.nome}
-           className="Img-atual"
-          />
-        )}
-        <div className="inputImg">
-          <input
+      <div className="modalEditarContainer">
+        <h2 className="modalEditarHeading">Editar Aparelho: {aparelho.nome}</h2>
+        <label htmlFor="imagem" className="modalEditarLabel">Upload de Imagem:</label>
+        <input
           type="file"
           id="imagem"
           accept="image/*"
           onChange={(e) => handleImageUpload(e.target.files)}
-          
+          className="modalEditarInput"
         />
-        </div>
-         <div className="conteudo">
-            <label htmlFor="nome">
-          Nome:
-        </label>
+        {editedAparelho.imagem && (
+          <img
+            src={editedAparelho.imagem}
+            alt={editedAparelho.nome}
+            className="modalEditarSmartphoneImage"
+          />
+        )}
+        <label htmlFor="nome" className="modalEditarLabel">Nome:</label>
         <input
           type="text"
           id="nome"
           value={editedAparelho.nome}
-          onChange={(e) => handleFieldChange("nome", e.target.value)}
-          
+          onChange={(e) => handleFieldChange('nome', e.target.value)}
+          className="modalEditarInput"
         />
-        <label htmlFor="descricaoCurta" >
-          Descrição Curta:
-        </label>
+        <label htmlFor="descricaoCurta" className="modalEditarLabel">Descrição Curta:</label>
         <textarea
           id="descricaoCurta"
           value={editedAparelho.descricaoCurta}
-          onChange={(e) => handleFieldChange("descricaoCurta", e.target.value)}
-          
+          onChange={(e) => handleFieldChange('descricaoCurta', e.target.value)}
+          className="modalEditarTextarea"
         />
-        <label htmlFor="descricaoExtensa" className={styles.label}>
-          Descrição Extensa:
-        </label>
+        <label htmlFor="descricaoExtensa" className="modalEditarLabel">Descrição Extensa:</label>
         <textarea
           id="descricaoExtensa"
           value={editedAparelho.descricaoExtensa}
-          onChange={(e) => handleFieldChange("descricaoExtensa", e.target.value)}
-          
+          onChange={(e) => handleFieldChange('descricaoExtensa', e.target.value)}
+          className="modalEditarTextarea"
         />
-        <label htmlFor="preco" className={styles.label}>
-          Preço:
-        </label>
+        <label htmlFor="preco" className="modalEditarLabel">Preço:</label>
         <input
           type="text"
           id="preco"
           value={editedAparelho.preco}
-          onChange={(e) => handleFieldChange("preco", e.target.value)}
-          
+          onChange={(e) => handleFieldChange('preco', e.target.value)}
+          className="modalEditarInput"
         />
-         </div>
-        <div className="botoes">
-            <button onClick={handleEdit} className="btnSave">
-          Salvar Edição
-        </button>
-        <button
-          onClick={closeEditModal}
-          className="btnCancel"
-        >
-          Cancelar
-        </button>
+        <div className="modalEditarButtonContainer">
+          <button onClick={handleEdit} className="modalEditarButton modalEditarInsertButton">Salvar Edição</button>
+          <button onClick={closeEditModal} className="modalEditarButton modalEditarCancelButton">Cancelar</button>
         </div>
-        
       </div>
     </Modal>
   );

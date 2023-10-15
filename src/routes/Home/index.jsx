@@ -1,48 +1,47 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import styles from './index.module.css';
+import './index.scss';
 
 function Home() {
   const [destaques, setDestaques] = useState([]);
-  
+
   useEffect(() => {
-    //Solicitação GET para obter os smartphones em destaque
-    fetch('http://localhost:5000/aparelhos',)
-    .then((response)=> response.json())
-    .catch((error) => 
-      console.log('Erro ao obter aparelhos:', error));
-    }, []);  
+    // Solicitação GET para obter os smartphones em destaque
+    fetch('http://localhost:5000/aparelhos')
+      .then((response) => response.json())
+      .catch((error) => console.log('Erro ao obter aparelhos:', error));
+  }, []);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.promotionCardContainer}>
-        <div className={styles.promotionCard}>
+    <div className="container">
+      <div className="promotionCardContainer">
+        <div className="promotionCard">
           <h3>Oferta Especial</h3>
           <p>Economize $100 em qualquer smartphone com o código "GARATOLU100".</p>
         </div>
-        <div className={styles.promotionCard}>
+        <div className="promotionCard">
           <h3>Smartphones em Destaque</h3>
           <p>Explore nossa seleção de smartphones de última geração.</p>
         </div>
       </div>
 
-      <div className={styles.featuredProducts}>
+      <div className="featuredProducts">
         <h2>Smartphones em Destaque</h2>
-        <Link to="/aparelhos" className={styles.viewAllLink}>
+        <Link to="/aparelhos" className="viewAllLink">
           Ver Todos os Smartphones
         </Link>
         {destaques.map((aparelho) => (
-          <div key={aparelho.id} className={styles.product}>
+          <div key={aparelho.id} className="product">
             <img
               src={aparelho.imagem}
               alt={aparelho.nome}
-              className={styles.productImage}
+              className="productImage"
             />
-            <div className={styles.productInfo}>
+            <div className="productInfo">
               <h3>{aparelho.nome}</h3>
               <p>{aparelho.descricaoCurta}</p>
-              <p className={styles.productPrice}>{aparelho.preco}</p>
-              <Link to={`/aparelhos/${aparelho.id}`} className={styles.detailsButton}>
+              <p className="productPrice">{aparelho.preco}</p>
+              <Link to={`/aparelhos/${aparelho.id}`} className="detailsButton">
                 Ver Detalhes
               </Link>
             </div>

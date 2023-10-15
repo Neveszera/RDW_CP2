@@ -5,7 +5,6 @@ import App from './App.jsx'
 
 import Home from './routes/Home/index.jsx';
 import Aparelhos from './routes/Aparelhos/index.jsx';
-
 import Error from './routes/Error/index.jsx'
 
 const router = createBrowserRouter([
@@ -14,8 +13,7 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       { path: '/', element: <Home /> },
-      { path: '/aparelhos', element: <Aparelhos /> },
-     
+      { path: '/aparelhos', element: <Aparelhos /> }
     ]
   }
 ]);

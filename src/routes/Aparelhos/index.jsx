@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
-import styles from './index.module.css';
+import './index.scss';
 import DeletarModal from '../../components/DeletarModal/index';
 import InserirAparelhoModal from '../../components/InserirAparelhoModal/index';
 import ModalEditarAparelho from '../../components/ModalEditarAparelho/index';
@@ -90,30 +90,30 @@ function Aparelhos() {
   };
 
   return (
-    <div className={styles.container}>
+    <div className="container">
       <h2>Smartphones Disponíveis</h2>
-      <button onClick={openInsertModal} className={`${styles.insertButton} ${styles.greenButton}`}>
+      <button onClick={openInsertModal} className="insertButton greenButton">
         Inserir Novo Aparelho
       </button>
       {aparelhos.map((aparelho) => (
-        <div key={aparelho.id} className={styles.product}>
+        <div key={aparelho.id} className="product">
           <img
             src={aparelho.imagem}
             alt={aparelho.nome}
-            className={styles.productImage}
+            className="productImage"
           />
-          <div className={styles.productInfo}>
+          <div className="productInfo">
             <h3>{aparelho.nome}</h3>
             <p>{aparelho.descricaoCurta}</p>
-            <p className={styles.productPrice}>{aparelho.preco}</p>
-            <div className={styles.buttonContainer}>
-              <button onClick={() => openDetailsModal(aparelho)} className={`${styles.detailsButton} ${styles.blueButton}`}>
+            <p className="productPrice">{aparelho.preco}</p>
+            <div className="buttonContainer">
+              <button onClick={() => openDetailsModal(aparelho)} className="detailsButton">
                 Ver Detalhes
               </button>
-              <button onClick={() => openEditModal(aparelho)} className={`${styles.editButton} ${styles.yellowButton}`}>
+              <button onClick={() => openEditModal(aparelho)} className="editButton">
                 Editar
               </button>
-              <button onClick={() => openDeleteModal(aparelho)} className={`${styles.deleteButton} ${styles.redButton}`}>
+              <button onClick={() => openDeleteModal(aparelho)} className="deleteButton">
                 Deletar
               </button>
             </div>
@@ -143,7 +143,6 @@ function Aparelhos() {
         onRequestClose={closeInsertModal}
         contentLabel="Modal de Inserção"
         overlayClassName="overlay"
-        className={styles.modal}
       >
         <InserirAparelhoModal
           closeInsertModal={closeInsertModal}
@@ -156,10 +155,11 @@ function Aparelhos() {
         />
       </Modal>
 
-      {/* Renderizar o modal de edição se estiver aberto */}
+      {/* Renderiza o modal de edição se estiver aberto */}
       {isEditModalOpen && (
         <ModalEditarAparelho
           aparelho={editAparelho}
+          overlayClassName="overlay"
           closeEditModal={closeEditModal}
           refreshAparelhos={() => {
             fetch('http://localhost:5000/aparelhos')
@@ -176,7 +176,6 @@ function Aparelhos() {
         onRequestClose={closeDetailsModal}
         contentLabel="Modal de Detalhes"
         overlayClassName="overlay"
-        className={styles.modal}
       >
         {detailsAparelho && (
           <DetalhesModal
@@ -188,4 +187,5 @@ function Aparelhos() {
     </div>
   );
 }
+
 export default Aparelhos;

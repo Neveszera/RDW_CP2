@@ -1,0 +1,122 @@
+.container {
+  font-family: 'Poppins', sans-serif;
+  padding: 20px;
+  text-align: center;
+}
+
+.product {
+  display: flex;
+  align-items: center;
+  border: 1px solid #0f0b0b60;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+
+  .productImage {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-right: 20px;
+  }
+
+  .productInfo {
+    flex: 1;
+    text-align: left;
+
+    h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    p {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .productPrice {
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .buttonContainer {
+      display: flex;
+      justify-content: space-evenly; // Espaço entre os botões
+      margin-top: 10px;
+
+      .button {
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      .detailsButton {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        text-decoration: none;
+      }
+      
+      .detailsButton:hover {
+        background-color: #0056b3;
+      }
+      
+      .editButton {
+        background-color: #ffc107; 
+        color: #333;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        text-decoration: none;
+      }
+      
+      .editButton:hover {
+        background-color: #d39e00; 
+      }
+      
+      .deleteButton {
+        background-color: #ff3547;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        text-decoration: none;
+      }
+      
+      .deleteButton:hover {
+        background-color: #d00f1a; 
+      }
+    }
+  }
+}
+
+.insertButton {
+  background-color: #28a745; 
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+
+.insertButton:hover {
+  background-color: #1e7e34; 
+}

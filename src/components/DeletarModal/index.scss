@@ -1,0 +1,65 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.modalDeletarContainer {
+    font-family: 'Poppins', sans-serif;
+    padding: 20px;
+    text-align: center;
+
+    .modalDeletarProductName {
+        font-weight: bold;
+        color: #fca103;
+    }
+
+    .modalDeletarHeading {
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .modalDeletarMessage {
+        font-size: 18px;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .modalDeletarButtonContainer {
+        margin-top: 20px;
+        text-align: center;
+
+        .modalDeletarButton {
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .confirmButton {
+            background-color: red;
+            color: white;
+
+            &:hover {
+                background-color: darkred;
+            }
+        }
+
+        .cancelButton {
+            background-color: blue;
+            color: white;
+
+            &:hover {
+                background-color: darkblue;
+            }
+        }
+    }
+}

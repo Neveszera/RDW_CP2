@@ -1,17 +1,19 @@
 import React from 'react';
-import styles from './index.module.css';
+import './index.scss';
 
 function ModalDeletar({ aparelho, confirmDelete, closeModal }) {
   return (
-    <div className={styles.modalContainer}>
-      <h2 className={styles.heading}>Confirmar Exclusão</h2>
-      <p className={styles.message}> Você tem certeza que deseja excluir o aparelho{' '}
-        <span className={styles.productName}>{aparelho.nome}</span>?</p>
-      <div className={styles.buttonContainer}>
-        <button onClick={confirmDelete} className={`${styles.button} ${styles.confirmButton}`}>
+    <div className="modalDeletarContainer">
+      <h2 className="modalDeletarHeading">Confirmar Exclusão</h2>
+      <p className="modalDeletarMessage">
+        Você tem certeza que deseja excluir o aparelho{' '}
+        <span className="modalDeletarProductName">{aparelho.nome}</span>?
+      </p>
+      <div className="modalDeletarButtonContainer">
+        <button onClick={confirmDelete} className="modalDeletarButton confirmButton">
           Confirmar
         </button>
-        <button onClick={closeModal} className={`${styles.button} ${styles.cancelButton}`}>
+        <button onClick={closeModal} className="modalDeletarButton cancelButton">
           Cancelar
         </button>
       </div>
